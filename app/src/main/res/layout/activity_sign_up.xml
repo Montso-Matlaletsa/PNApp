@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.signUp"
+    android:background="#01579b"
+    android:orientation="vertical"
+    >
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <ImageButton
+            android:layout_width="60sp"
+            android:layout_height="60sp"
+            android:background="#01579b"
+            android:src="@drawable/ic_sharp_arrow_back_ios_24"
+            app:tint="@color/white"
+            android:id="@+id/backBtn"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:textSize="30sp"
+            android:textStyle="italic"
+            android:textAlignment="center"
+            android:layout_centerVertical="true"
+            android:textColor="@color/white"
+            />
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_marginBottom="100sp"
+            >
+
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginTop="40sp"
+                android:layout_marginLeft="10sp"
+                android:layout_marginRight="10sp"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="10sp"
+                    android:orientation="vertical"
+                    >
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:clipToOutline="true"
+                        android:layout_marginTop="50sp"
+                        android:id="@+id/userNameLayout"
+                        app:startIconDrawable="@drawable/ic_sharp_person_24"
+
+
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/userName"
+                            android:hint="User Name"
+                            android:inputType="textEmailAddress"
+
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:clipToOutline="true"
+                        android:layout_marginTop="50sp"
+                        android:id="@+id/emailLayout"
+                        app:startIconDrawable="@drawable/ic_sharp_email_24"
+
+
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/RegEmail"
+                            android:hint="Email"
+                            android:inputType="textEmailAddress"
+
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:clipToOutline="true"
+                        app:boxBackgroundColor="@color/white"
+                        android:layout_marginTop="20sp"
+                        android:layout_below="@+id/emailLayout"
+                        android:id="@+id/passwordLayout"
+                        app:startIconDrawable="@drawable/ic_sharp_lock_24"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/RegPassword"
+                            android:hint="Password"
+                            android:inputType="textPassword"
+
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="60sp"
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                        android:clipToOutline="true"
+                        app:boxBackgroundColor="@color/white"
+                        android:layout_marginTop="20sp"
+                        android:layout_below="@+id/emailLayout"
+                        android:id="@+id/ConfirmPasswordLayout"
+                        app:startIconDrawable="@drawable/ic_sharp_lock_24"
+                        >
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:id="@+id/ConfirmPassword"
+                            android:hint="Comfirm Password"
+                            android:inputType="textPassword"
+                            />
+
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/Register"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_below="@id/passwordLayout"
+                        android:layout_marginTop="20sp"
+                        android:background="#2962ff"
+                        android:text="Sign Up"
+                        app:backgroundTint="#2962ff" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/registerBtn"
+                        android:layout_width="match_parent"
+                        android:layout_height="50sp"
+                        android:layout_below="@id/loginBtn"
+                        android:layout_marginTop="20sp"
+                        android:background="#7b1fa2"
+                        android:text="Sign In"
+                        app:backgroundTint="#7b1fa2" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
