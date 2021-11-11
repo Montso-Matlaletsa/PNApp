@@ -45,6 +45,11 @@ public class MainActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
+        if(auth.getCurrentUser() != null){
+            startActivity(new Intent(MainActivity.this, Home.class));
+            finish();
+        }
+
         progressBar = findViewById(R.id.progressBar);
         registerBtn = findViewById(R.id.registerBtn);
         loginBtn = findViewById(R.id.loginBtn);

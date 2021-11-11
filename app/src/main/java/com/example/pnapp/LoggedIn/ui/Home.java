@@ -5,16 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.pnapp.MainActivity;
 import com.example.pnapp.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class Home extends AppCompatActivity{
 
     BottomNavigationView bottomNavigationView;
+    private FirebaseAuth firebaseAuth;
 
 
     private boolean loadFragment(Fragment fragment) {
@@ -34,9 +38,15 @@ public class Home extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        loadFragment(new HomeFragment());
+            firebaseAuth = FirebaseAuth.getInstance();
+
+            if(firebaseAuth.getCurrentUser() == null){
+                startActivity(new Intent(Home.this, MainActivity.class));
+
+            }
 
 
+            loadFragment(new HomeFragment());
             BottomNavigationView navigation = findViewById(R.id.bottomNav_view);
 
 
@@ -55,7 +65,7 @@ public class Home extends AppCompatActivity{
                             break;
 
                         case R.id.recipes:
-                            fragment =new RecipesFragment();
+                            fragment =new Weight();
                             break;
 
                         case R.id.account:

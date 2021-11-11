@@ -57,9 +57,12 @@
                     android:indeterminate="true"
                     android:id="@+id/progressBar"
                     android:layout_centerInParent="true"
-
+                    android:elevation="10sp"
                     android:visibility="invisible"
+
                     />
+
+
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:layout_width="match_parent"

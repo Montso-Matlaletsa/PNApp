@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.example.pnapp.Models.Weight;
 import com.example.pnapp.R;
-import com.google.android.gms.tasks.Tasks;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.FirebaseAuth;
@@ -25,13 +24,10 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.concurrent.ExecutionException;
 
-public class WeightUpdate extends AppCompatActivity {
+
+public class UpdateStartWeight extends AppCompatActivity {
 
     TextInputEditText NewWeight;
     FloatingActionButton addWeight;
@@ -43,28 +39,28 @@ public class WeightUpdate extends AppCompatActivity {
     FirebaseDatabase firebaseDatabase;
     String[] req = new String[2];
     com.example.pnapp.Models.Weight w;
-    List<com.example.pnapp.Models.Weight> list;
+    List<Weight> list;
     String action = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_weight_update);
+        setContentView(R.layout.activity_update_start_weight);
 
-        NewWeight = findViewById(R.id.NewWeight);
-        addWeight = findViewById(R.id.addWeight);
-        updateWeight = findViewById(R.id.updateWeight);
+        NewWeight = findViewById(R.id.NewStartWeight);
+        addWeight = findViewById(R.id.addStartWeight);
+        updateWeight = findViewById(R.id.updateStartWeight);
         auth = FirebaseAuth.getInstance();
 
         req = getIntent().getStringArrayExtra("req");
-        action = req[0];
+
 
         weight = Double.parseDouble(req[1]);
         DecimalFormat df = new DecimalFormat();
         df.setMinimumFractionDigits(2);
 
         FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-         databaseReference = firebaseDatabase.getReference("user");
+        DatabaseReference databaseReference = firebaseDatabase.getReference("user");
 
         list = new ArrayList<>();
 
@@ -90,31 +86,20 @@ public class WeightUpdate extends AppCompatActivity {
             }
         });
 
+        w = list.get(list.size() -1);
+
+
         updateWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                w = list.get(list.size() -1);
-
-                if(action.equals("current")){
-
-
-
-                    w.setWeight(Float.parseFloat(NewWeight.getText().toString().trim()));
-
-                    databaseReference.child(auth.getUid())
-                            .child("weight").child(getDate()).setValue(w);
-
-                    Toast.makeText(WeightUpdate.this, "Weight is updated", Toast.LENGTH_SHORT).show();
-                }else
-                    if(action.equals("start")){
 
                     w.setStart(Double.parseDouble(NewWeight.getText().toString().trim()));
 
                     databaseReference.child(auth.getUid())
                             .child("weight").child(getDate()).setValue(w);
 
-                        Toast.makeText(WeightUpdate.this, "Weight is updated", Toast.LENGTH_SHORT).show();
-                }
+                    Toast.makeText(UpdateStartWeight.this, "Weight is updated", Toast.LENGTH_SHORT).show();
+
 
 
 
@@ -135,8 +120,8 @@ public class WeightUpdate extends AppCompatActivity {
                 NewWeight.setText(String.valueOf(df.format(weight)));
             }
         });
-
     }
+
 
     private String getDate(){
         final Calendar c = Calendar.getInstance();

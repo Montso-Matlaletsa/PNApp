@@ -24,7 +24,7 @@ public class signUp extends AppCompatActivity {
     ImageButton backBtn;
     MaterialButton register;
     private FirebaseAuth auth;
-    TextInputEditText regEmail, regPassword, username, ComfirmPassword;
+    TextInputEditText regEmail, regPassword, ComfirmPassword;
 
     String password;
     String email;
@@ -47,7 +47,6 @@ public class signUp extends AppCompatActivity {
 
         regPassword = findViewById(R.id.RegPassword);
         regEmail = findViewById(R.id.RegEmail);
-        username = findViewById(R.id.userName);
         ComfirmPassword = findViewById(R.id.ConfirmPassword);
 
         auth = FirebaseAuth.getInstance();
@@ -56,7 +55,6 @@ public class signUp extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 email = regEmail.getText().toString().trim();
-                String Username = username.getText().toString().trim();
                 password= regPassword.getText().toString().trim();
                 String comfirmPassword = ComfirmPassword.getText().toString().trim();
 
@@ -95,10 +93,19 @@ public class signUp extends AppCompatActivity {
                                             Toast.LENGTH_SHORT).show();
                                 }else{
 
-                                    Toast.makeText(signUp.this, "Account Created successfully",
-                                            Toast.LENGTH_SHORT).show();
-                                    startActivity(new Intent(signUp.this, MainActivity.class));
-                                    finish();
+                                    auth.signInWithEmailAndPassword(email, password)
+                                            .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                                                @Override
+                                                public void onComplete(@NonNull Task<AuthResult> task) {
+                                                    if(!task.isSuccessful()){
+                                                        startActivity(new Intent(signUp.this, MainActivity.class));
+                                                    }else{
+                                                        startActivity(new Intent(signUp.this, CreateProfile.class));
+                                                    }
+                                                    finish();
+                                                }
+                                            });
+
                                 }
                             }
                         });

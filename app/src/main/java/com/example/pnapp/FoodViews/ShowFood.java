@@ -2,15 +2,23 @@ package com.example.pnapp.FoodViews;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.example.pnapp.LoggedIn.ui.Home;
 import com.example.pnapp.LoggedIn.ui.MealFragment;
 import com.example.pnapp.Models.MyFood;
 import com.example.pnapp.R;
@@ -22,6 +30,7 @@ import com.fatsecret.platform.model.Recipe;
 import com.fatsecret.platform.model.Serving;
 import com.fatsecret.platform.services.Response;
 import com.fatsecret.platform.services.android.ResponseListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -29,14 +38,24 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.zip.Inflater;
 
 
 public class ShowFood extends AppCompatActivity {
 
-    TextView foodName, f;
-    Long food_id;
+    TextView foodName, Desc, type;
+    MyFood food_id;
     String key;
     String secret;
+    FloatingActionButton addMeal;
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(ShowFood.this, Home.class));
+        finish();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,24 +64,27 @@ public class ShowFood extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         key = "b83d887701404c20b962fe958e69421f";
         secret = "a9ddc7ea23b24fc0b07bc1973a2efc7d";
+
         foodName = findViewById(R.id.foodName);
-        f = findViewById(R.id.f);
+        Desc = findViewById(R.id.desc);
+        type = findViewById(R.id.type);
+        addMeal = findViewById(R.id.addMeal);
 
+        MyFood myFood = (MyFood) getIntent().getSerializableExtra("food");
 
+        foodName.setText(myFood.getName());
+        Desc.setText(myFood.getDescription());
+        type.setText(myFood.getType());
 
-       food_id = getIntent().getLongExtra("food_id", 29304L);
-
-        Request req = new Request(key, secret);
-        JSONObject json = req.getFood(29304L);
-
-        if(json != null){
-            foodName.setText("Okay");
-        }else{
-            foodName.setText("Dreed");
-        }
-
-
-
+        addMeal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ShowFood.this, AddMeal.class);
+                intent.putExtra("food", myFood);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 
@@ -71,12 +93,14 @@ public class ShowFood extends AppCompatActivity {
     private void getFood(final long id) {
 
         Request req = new Request(key, secret);
+
         new AsyncTask<String, String, String>() {
+            @SuppressLint("StaticFieldLeak")
             @Override
             protected String doInBackground(String... arg0) {
                 JSONObject foodGet = req.getFood(id);
 
-                f.setText("We are in");
+               ;
 
                 try {
                     if (foodGet != null) {

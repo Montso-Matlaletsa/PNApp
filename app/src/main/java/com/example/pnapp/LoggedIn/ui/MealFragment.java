@@ -20,6 +20,7 @@ import com.example.pnapp.Models.MyFood;
 import com.example.pnapp.R;
 
 
+import com.example.pnapp.services.FatsecretService;
 import com.example.pnapp.utils.ServingUtility;
 import com.fatsecret.platform.model.CompactFood;
 import com.fatsecret.platform.model.CompactRecipe;
@@ -65,6 +66,7 @@ public class MealFragment extends Fragment {
 
         Request request = new Request(key, secret, listener);
 
+        FatsecretService fats = new FatsecretService(key, secret);
 
 
         list = view.findViewById(R.id.foods);
@@ -76,7 +78,7 @@ public class MealFragment extends Fragment {
 
                 MyFood myFood = (MyFood) adapterView.getItemAtPosition(position);
                 Intent intent = new Intent(getContext().getApplicationContext(), ShowFood.class);
-                intent.putExtra("food_id", myFood.getId());
+                intent.putExtra("food", myFood);
 
                 startActivity(intent);
 
@@ -88,6 +90,7 @@ public class MealFragment extends Fragment {
             @Override
             public boolean onQueryTextSubmit(String s) {
                 request.searchFoods(requestQueue, s);
+
                 return false;
             }
 
@@ -126,7 +129,6 @@ public class MealFragment extends Fragment {
                 myFood.setBrandName(food.getBrandName());
                 myFood.setType(food.getType());
                 myFood.setUrl(food.getUrl());
-
 
 
                 foodList.add(myFood);

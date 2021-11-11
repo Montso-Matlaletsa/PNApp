@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoggedIn.ui.WeightUpdate"
+    tools:context=".LoggedIn.ui.UpdateStartWeight"
     android:orientation="vertical"
     >
 
@@ -18,12 +18,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             >
-            <ImageButton
-                android:layout_width="60sp"
-                android:layout_height="60sp"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_outline_cancel_24"
-                app:tint="@color/white" />
+
 
 
             <ImageButton
@@ -33,7 +28,7 @@
                 android:background="@android:color/transparent"
                 android:src="@drawable/ic_outline_check_24"
                 app:tint="@color/white"
-                android:id="@+id/updateWeight"
+                android:id="@+id/updateStartWeight"
                 />
 
         </RelativeLayout>
@@ -78,7 +73,7 @@
             <com.google.android.material.textfield.TextInputEditText
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:id="@+id/NewWeight"
+                android:id="@+id/NewStartWeight"
 
                 />
 
@@ -91,12 +86,11 @@
             android:layout_rowWeight="1"
             app:backgroundTint="#283593"
             android:layout_marginRight="10sp"
-            android:id="@+id/addWeight"
+            android:id="@+id/addStartWeight"
             android:textAlignment="center"
             />
 
     </GridLayout>
-
 
 
 

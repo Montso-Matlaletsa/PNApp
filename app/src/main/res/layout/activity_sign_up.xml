@@ -57,6 +57,7 @@
                 android:layout_marginTop="40sp"
                 android:layout_marginLeft="10sp"
                 android:layout_marginRight="10sp"
+                android:layout_marginBottom="50sp"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -65,28 +66,6 @@
                     android:orientation="vertical"
                     >
 
-                    <com.google.android.material.textfield.TextInputLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="60sp"
-                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                        android:clipToOutline="true"
-                        android:layout_marginTop="50sp"
-                        android:id="@+id/userNameLayout"
-                        app:startIconDrawable="@drawable/ic_sharp_person_24"
-
-
-                        >
-
-                        <com.google.android.material.textfield.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:id="@+id/userName"
-                            android:hint="User Name"
-                            android:inputType="textEmailAddress"
-
-                            />
-
-                    </com.google.android.material.textfield.TextInputLayout>
                     <com.google.android.material.textfield.TextInputLayout
                         android:layout_width="match_parent"
                         android:layout_height="60sp"
